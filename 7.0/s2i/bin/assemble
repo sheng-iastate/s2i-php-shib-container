@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "---> Configure shibboleth..."
+tar xCf /etc/shibboleth /opt/app-root/shib/shib-etc.tar
+
 set -e
 
 shopt -s dotglob
