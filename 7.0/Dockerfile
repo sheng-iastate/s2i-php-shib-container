@@ -4,6 +4,8 @@ FROM centos/s2i-base-centos7
 # applications.
 
 EXPOSE 8080
+EXPOSE 8443
+
 
 ENV PHP_VERSION=7.0 \
     PATH=$PATH:/opt/rh/rh-php70/root/usr/bin
@@ -30,15 +32,24 @@ LABEL summary="$SUMMARY" \
       maintainer="SoftwareCollections.org <sclorg@redhat.com>"
 
 # Install Apache httpd and PHP
+# add ssl
 RUN yum install -y centos-release-scl && \
     yum-config-manager --enable centos-sclo-rh-testing && \
     INSTALL_PKGS="rh-php70 rh-php70-php rh-php70-php-mysqlnd rh-php70-php-pgsql rh-php70-php-bcmath \
                   rh-php70-php-gd rh-php70-php-intl rh-php70-php-ldap rh-php70-php-mbstring rh-php70-php-pdo \
                   rh-php70-php-process rh-php70-php-soap rh-php70-php-opcache rh-php70-php-xml \
+                  httpd24-mod_ssl  \
                   rh-php70-php-gmp" && \
     yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS --nogpgcheck && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y
+
+
+# Install Shibboleth
+RUN curl http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -o /etc/yum.repos.d/shibboleth.repo && \
+    yum install -y shibboleth && \
+    yum clean all -y
+
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
@@ -58,7 +69,9 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     chmod -R a+rwx /tmp/sessions && \
     chmod -R ug+rwx /opt/app-root && \
     chmod -R a+rwx /etc/opt/rh/rh-php70 && \
-    chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd
+    chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd &&\
+    sed -i -f /opt/app-root/etc/conf.d/sslconf.sed /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf && \
+    chmod -R a+rwx /etc/shibboleth	
 
 USER 1001
 
