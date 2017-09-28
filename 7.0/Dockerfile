@@ -74,6 +74,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     mv /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.disabled && \
     sed -i -f /opt/app-root/etc/conf.modules.d/00-ssl.sed /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-ssl.conf && \
     chmod -R a+rwx /opt/rh/httpd24/root/etc/httpd/logs && \
+    chmod -R a+rwx /opt/rh/httpd24/root/etc/httpd && \
     chown -R 1001 /etc/shibboleth && \
     chmod -R a+rwx /etc/shibboleth	
 
