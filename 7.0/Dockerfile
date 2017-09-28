@@ -71,9 +71,12 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     chmod -R a+rwx /etc/opt/rh/rh-php70 && \
     chmod -R a+rwx /opt/rh/httpd24/root/var/run/httpd && \
     sed -i -f /opt/app-root/etc/conf.d/sslconf.sed /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf && \
+    sed -i -f /opt/app-root/etc/conf.modules.d/00-ssl.sed /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-ssl.conf && \
     chmod -R a+rwx /opt/rh/httpd24/root/etc/httpd/logs && \
     chown -R 1001 /etc/shibboleth && \
     chmod -R a+rwx /etc/shibboleth	
+
+	# temp use sed to disable the ssl module so see if that is the problems
 
 USER 1001
 
