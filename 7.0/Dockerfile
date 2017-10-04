@@ -73,6 +73,8 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     sed -i -f /opt/app-root/etc/conf.d/sslconf.sed /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf && \
     mv /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.disabled && \
     sed -i -f /opt/app-root/etc/conf.modules.d/00-ssl.sed /opt/rh/httpd24/root/etc/httpd/conf.modules.d/00-ssl.conf && \
+    chown 1001 /etc/pki/tls/certs/localhost.crt && \
+    chown 1001 /etc/pki/tls/private/localhost.key && \
     chmod -R a+rwx /var/log/httpd24 && \
     chmod -R a+rwx /opt/rh/httpd24/root/etc/httpd && \
     chown -R 1001 /etc/shibboleth && \
