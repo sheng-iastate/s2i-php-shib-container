@@ -48,6 +48,6 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 
 # start shibd
 # TO need to manipulate the configuation of shibd
-exec shibd
+#exec shibd
 
 exec httpd -D FOREGROUND
