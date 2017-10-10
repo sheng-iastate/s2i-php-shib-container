@@ -48,6 +48,8 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 
 # start shibd
 # TO need to manipulate the configuation of shibd
+#https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6
+export LD_LIBRARY_PATH=/opt/shibboleth/lib64
 exec shibd -t
 
 exec httpd -D FOREGROUND
