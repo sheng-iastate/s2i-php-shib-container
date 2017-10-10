@@ -49,6 +49,8 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 # start shibd
 # TO need to manipulate the configuation of shibd
 #https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6
+echo "LD_LIBRARY_PATH"
+echo $LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/shibboleth/lib64
 shibd -t
 
