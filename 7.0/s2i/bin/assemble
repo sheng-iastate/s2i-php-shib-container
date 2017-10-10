@@ -2,7 +2,7 @@
 
 echo "---> Configure shibboleth..."
 tar xCf /etc/shibboleth /opt/app-root/shib/shib-etc.tar
-sed -i 's/checkAddress="true"/checkAddress="false"' /etc/Shibboleth/Shibboleth2.xml
+sed -i 's/checkAddress="true"/checkAddress="false"' /etc/shibboleth/shibboleth2.xml
 chmod a+r /etc/shibboleth/las.iastate.edu-shib.cloud-sp-key.pem
 chmod a+r /etc/shibboleth/las.iastate.edu-shib.cloud-sp-cert.pem
 
