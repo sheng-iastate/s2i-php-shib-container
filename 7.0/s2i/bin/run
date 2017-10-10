@@ -52,7 +52,7 @@ envsubst < /opt/app-root/etc/conf.d/00-documentroot.conf.template > /opt/app-roo
 #echo "LD_LIBRARY_PATH"
 #echo $LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/shibboleth/lib64
-shibd
+shibd -f
 #shibd -t
 
 #exec scl enable httpd24 'httpd -D FOREGROUND'
