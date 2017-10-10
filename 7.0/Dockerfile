@@ -73,7 +73,7 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     sed -i -f /opt/app-root/etc/conf.d/sslconf.sed /opt/rh/httpd24/root/etc/httpd/conf.d/ssl.conf && \
     chmod -R a+rwx /var/log/httpd24 && \
     chmod -R a+rwx /opt/rh/httpd24/root/etc/httpd && \
-    ln -s /etc/httpd/conf.d/shib.conf /opt/rh/httpd24/root/etc/httpd/conf.d/shib.conf
+    ln -s /etc/httpd/conf.d/shib.conf /opt/rh/httpd24/root/etc/httpd/conf.d/shib.conf && \
     chown -R 1001 /etc/shibboleth && \
     chmod -R a+rwx /etc/shibboleth && \
     chmod -R a+rwx /var/run/shibboleth && \
