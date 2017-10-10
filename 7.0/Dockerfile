@@ -77,6 +77,8 @@ RUN sed -i -f /opt/app-root/etc/httpdconf.sed /opt/rh/httpd24/root/etc/httpd/con
     chown -R 1001 /etc/shibboleth && \
     chmod -R a+rwx /etc/shibboleth && \
     chmod -R a+rwx /var/run/shibboleth && \
+    chmod -R a+rwx /var/log/shibboleth && \
+    chmod -R a+rwx /var/log/shibboleth-www && \
     chmod -R a+rwx /var/cache/shibboleth
 
 	# temp use sed to disable the ssl module so see if that is the problems
