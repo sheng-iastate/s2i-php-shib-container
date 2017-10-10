@@ -2,14 +2,15 @@
 
 echo "---> Configure shibboleth..."
 tar xCf /etc/shibboleth /opt/app-root/shib/shib-etc.tar
+chmod a+r /etc/shibboleth/las.iastate.edu-shib.cloud-sp-key.pem
+chmod a+r /etc/shibboleth/las.iastate.edu-shib.cloud-sp-cert.pem
+
 
 echo "---> Copy https keys out.."
 mkdir -p /opt/app-root/tls/certs
 mkdir -p /opt/app-root/tls/private
 cp /opt/app-root/tls-secret/cloud.las.iastate.edu.cer /opt/app-root/tls/certs/cloud.las.iastate.edu.cer
 cp /opt/app-root/tls-secret/cloud.las.iastate.edu.key /opt/app-root/tls/private/cloud.las.iastate.edu.key
-chmod a+r /opt/app-root/tls/certs/cloud.las.iastate.edu.cer
-chmod a+r /opt/app-root/tls/certs/cloud.las.iastate.edu.key
 
 set -e
 
